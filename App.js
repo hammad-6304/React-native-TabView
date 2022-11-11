@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { StatusBar } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import BotTabs from "./components/navigation/BotNav";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { LogBox } from "react-native";
+// uncomment to below lines to make Stack navigation Functional
 
-export default function App() {
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import HomeScreen from "./screens/HomeScreen";
+// import AuctionScreen from "./screens/AuctionScreen";
+// const Stack = createNativeStackNavigator();
+
+const App = () => {
+  LogBox.ignoreLogs(["Sending..."]);
+  useEffect(() => {}, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    // Safe Area Provider which will be helpful to handle Top-Notch
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {/* Stack view Implementation below */}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        {/* <Stack.Navigator>
+          <Stack.Screen
+          name="Home"
+          options={{ title: "Home Screen" }}
+          component={HomeScreen}
+          />
+          <Stack.Screen
+          name="AuctionScreen"
+          options={{ title: "Second Screen" }}
+          component={AuctionScreen}
+          />
+        </Stack.Navigator> */}
+
+        {/* Bottom Tabs Navigation below */}
+        <BotTabs />
+
+        {/* Status Bar */}
+        <StatusBar />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+};
+export default App;
