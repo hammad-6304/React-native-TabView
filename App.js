@@ -1,45 +1,83 @@
-import React, { useEffect } from "react";
-import { StatusBar } from "react-native";
+import * as React from "react";
+import { Button, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import BotTabs from "./components/navigation/BotNav";
+// import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import AccountScreen from "./screens/AccountScreen/index";
+import ChatScreen from "./screens/ChatScreen";
+import HomeScreen from "./screens/HomeScreen";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { LogBox } from "react-native";
-// uncomment to below lines to make Stack navigation Functional
+import { StatusBar } from "react-native";
 
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import HomeScreen from "./screens/HomeScreen";
-// import AuctionScreen from "./screens/AuctionScreen";
-// const Stack = createNativeStackNavigator();
+// function DetailsScreen({navigation}) {
+//   return (
+//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+//       <Text>Details!</Text>
+//       <Button
+//         title="Go to Setting"
+//         onPress={() => navigation.navigate("Settings")}
+//       />
+//     </View>
+//   );
+// }
+// function HomeScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+//       <Text>Home screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate("Details")}
+//       />
+//     </View>
+//   );
+// }
+// function SettingsScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+//       <Text>Settings screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate("Details")}
+//       />
+//     </View>
+//   );
+// }
+// const HomeStack = createNativeStackNavigator();
+// function HomeStackScreen() {
+//   return (
 
-const App = () => {
-  LogBox.ignoreLogs(["Sending..."]);
-  useEffect(() => {}, []);
+//       <HomeStack.Navigator>
+//         <HomeStack.Screen name="Home" component={HomeScreen} />
+//         <HomeStack.Screen name="HomeDetails" component={DetailsScreen} />
+//       </HomeStack.Navigator>
+
+//   );
+// }
+// const SettingsStack = createNativeStackNavigator();
+// function SettingsStackScreen() {
+//   return (
+
+//       <SettingsStack.Navigator initialRouteName="Details">
+//         <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+//         <SettingsStack.Screen name="Details" component={DetailsScreen} />
+//       </SettingsStack.Navigator>
+
+//   );
+// }
+const Tab = createMaterialBottomTabNavigator();
+export default function App() {
   return (
-    // Safe Area Provider which will be helpful to handle Top-Notch
     <SafeAreaProvider>
+      <StatusBar />
       <NavigationContainer>
-        {/* Stack view Implementation below */}
-
-        {/* <Stack.Navigator>
-          <Stack.Screen
-          name="Home"
-          options={{ title: "Home Screen" }}
-          component={HomeScreen}
-          />
-          <Stack.Screen
-          name="AuctionScreen"
-          options={{ title: "Second Screen" }}
-          component={AuctionScreen}
-          />
-        </Stack.Navigator> */}
-
-        {/* Bottom Tabs Navigation below */}
-        <BotTabs />
-
-        {/* Status Bar */}
-        <StatusBar />
+        <Tab.Navigator initialRouteName="Home">
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Chat" component={ChatScreen} />
+          <Tab.Screen name="Account" component={AccountScreen} />
+        </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );
-};
-export default App;
+}

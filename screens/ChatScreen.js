@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import SafeAreaViewHoc from "../HOC/SafeAreaViewHoc";
 
-const HomeScreen = () => (
+const ChatScreen = () => (
   <View>
-    <Text>Home Screen</Text>
+    <Text>Chat Screen</Text>
   </View>
 );
 
-export default SafeAreaViewHoc(HomeScreen);
+export default SafeAreaViewHoc(ChatScreen);
