@@ -70,7 +70,6 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <StatusBar />
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Home">
           <Tab.Screen name="Home" component={HomeScreen} />
@@ -78,6 +77,7 @@ export default function App() {
           <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
       </NavigationContainer>
+      <StatusBar />
     </SafeAreaProvider>
   );
 }

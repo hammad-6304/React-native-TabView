@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import SafeAreaViewHoc from "../HOC/SafeAreaViewHoc";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import AccountScreen from "./AccountScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const InboxScreen = SafeAreaViewHoc(() => (
   <View>
@@ -9,13 +10,16 @@ const InboxScreen = SafeAreaViewHoc(() => (
   </View>
 ));
 
+const SentAccountScreen = () => <AccountScreen />;
+
 const ChatTopTabs = createMaterialTopTabNavigator();
 const ChatScreen = () => (
-  <ChatTopTabs.Navigator>
-    <ChatTopTabs.Screen name="inbox" component={InboxScreen} />
-    <ChatTopTabs.Screen name="sentAccount" component={AccountScreen} />
-  </ChatTopTabs.Navigator>
-  // <InboxScreen/>
+  <SafeAreaView style={{ flex: 1 }}>
+    <ChatTopTabs.Navigator>
+      <ChatTopTabs.Screen name="inbox" component={InboxScreen} />
+      <ChatTopTabs.Screen name="DreamBox" component={SentAccountScreen} />
+    </ChatTopTabs.Navigator>
+  </SafeAreaView>
 );
 
-export default SafeAreaViewHoc(ChatScreen);
+export default ChatScreen;
